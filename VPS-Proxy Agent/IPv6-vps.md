@@ -60,6 +60,28 @@ wireguard-go
 reboot
 ```
 
+shell 脚本 
+```shell
+#!/bin/bash
+apt update && apt upgrade
+apt install wireguard-dkms -y
+
+wget https://git.zx2c4.com/wireguard-tools/snapshot/wireguard-tools-1.0.20210914.tar.xz
+tar -xf wireguard-tools-1.0.20210914.tar.xz
+
+cd wireguard-tools-1.0.20210914/src
+make && make install
+
+wg -h
+wg-quick -h
+
+touch /etc/wireguard/warp.conf
+```
+
+
+
+
+
 执行WARP一键操作脚本：
 
 [GitHub Addr](https://github.com/fscarmen/warp-sh)
