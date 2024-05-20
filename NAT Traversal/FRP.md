@@ -38,6 +38,39 @@ localPort = 3389
 
 frpc.toml访问端配置
 
+```toml
+serverAddr = "x.x.x.x"
+serverPort = 7000
+auth.token = "secret token 1"
+
+[[visitors]]
+name = "ssh-visitor"
+type = "stcp"
+serverName = "secret-ssh"
+secretKey = "secret token 2"
+bindAddr = "127.0.0.1"
+bindPort = 6000
+
+[[visitors]]
+name = "remote-visitor"
+type = "stcp"
+serverName = "remote-desktop"
+secretKey = "secret token 3"
+bindAddr = "127.0.0.1"
+bindPort = 6001
+```
+
+连接
+
+```shell
+# ssh 
+ssh username@127.0.0.1:6000
+# remote connect 
+127.0.0.1:6001
+```
+
+
+
 ## 一般访问 
 
 frps.toml服务端配置
