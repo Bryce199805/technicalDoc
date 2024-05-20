@@ -1,1 +1,1 @@
-[[![AUR Last Modified](https://img.shields.io/aur/last-modified/google-chrome)](https://img.shields.io/github/license/Bryce1998/technicalDoc.svg)](https://img.shields.io/github/license/Bryce1998/technicalDoc.svg)
+https://img.shields.io/github/license/Bryce1998/technicalDoc
