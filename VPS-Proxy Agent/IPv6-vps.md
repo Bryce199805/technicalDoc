@@ -116,7 +116,7 @@ bash <(wget -qO- https://raw.githubusercontent.com/fscarmen/sing-box/main/sing-b
 # 以下暂未测试 CDN暂未测试
 # tuic 
 # ShadowTLS 
-# shadowsocks 
+# shadowsocks 飞快！
 # trojan 
 # H2 + reality 
 # gRPC + reality
