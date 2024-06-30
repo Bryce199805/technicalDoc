@@ -2,6 +2,18 @@
 
 ## 自建Planet根服务器
 
+---
+
+2024.06.30更新
+
+找到一个更好的  [ref](https://github.com/xubiaolin/docker-zerotier-planet)
+
+---
+
+以下为旧内容 ---2024.06.30
+
+---
+
 [ref](https://github.com/Jonnyan404/zerotier-planet)
 
 ### Requirements
@@ -38,6 +50,14 @@ http://[ip address]:4000  # 控制台地址
 密码：mrdoc.fun
 
 登录后创建一个网络，选择EasySetup分IP，复制网络ID
+
+
+
+---
+
+客户端配置仍然有效 ---2024.06.30
+
+---
 
 ### 客户端配置
 
