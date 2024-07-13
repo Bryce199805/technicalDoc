@@ -21,3 +21,19 @@ sudo systemctl restart docker
 sudo systemctl show --property=Environment docker
 ```
 
+docker换源
+
+```shell
+# /etc/docker/daemon.json 
+{
+        "exec-opts":["native.cgroupdrivers=systemd"],
+        "registry-mirrors":["https://kn0t2bca.mirror.aliyuncs.com"]
+}
+```
+
+```shell
+systemctl restart docker
+```
+
+
+
