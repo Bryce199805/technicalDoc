@@ -15,6 +15,13 @@ docker rmi <image_name or image_id>
 docker build -t <image_name> <path_to_dockerfile>
 ```
 
+#### 通过配合awk命令批量删除镜像或容器
+
+```shell
+docker rmi `docker images | awk '/<arg1>'/{print $<arg2>}`
+```
+参数1是需要匹配的字符串模式；参数2为关键索引的列，在这里应为表示Image ID的列
+
 ## Container
 
 ```shell
