@@ -3,6 +3,7 @@
 ## Install & Uninstall
 ### Fedora
 [docker.docs](https://docs.docker.com/engine/install/fedora/)
+
 ```shell
 # add repo 
 sudo dnf -y install dnf-plugins-core
@@ -19,5 +20,13 @@ sudo dnf remove docker-ce docker-ce-cli containerd.io docker-buildx-plugin docke
 
 sudo rm -rf /var/lib/docker
 sudo rm -rf /var/lib/containerd
+```
+
+## Option
+
+```shell
+# docker 免sudo
+sudo gpasswd -a $USER docker
+newgrp docker
 ```
 
