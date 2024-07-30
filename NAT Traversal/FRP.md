@@ -8,6 +8,7 @@
 
 frps.toml服务端配置
 
+
 ```toml
 bindPort = 7000
 auth.token = "secret token 1"
