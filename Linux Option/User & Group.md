@@ -23,7 +23,7 @@ Usage: groupadd [options] GROUP
 
 ```shell
 # 创建样例
-useradd newgroup
+groupadd newgroup
 ```
 
 ### 修改用户组  --groupmod
@@ -129,7 +129,7 @@ useradd [option] <username>
 
 ```shell
 # 创建用户样例
-useradd -d /home/newuser -G newgroup,sudo -m -s /bin/bash newuser
+useradd -d /home/newuser -g newgroup -G docker,sudo -m -s /bin/bash newuser
 # 创建后修改用户密码
 passwd newuser
 # 要想使用户能够使用sudo命令，需要将用户添加到sudo组中
