@@ -1,4 +1,4 @@
-### git config
+## git config
 
 ```shell
 # 查看全局配置信息
@@ -10,8 +10,6 @@ git config --local --list
 git config --global http.proxy http://127.0.0.1:10809
 git config --global https.proxy https://127.0.0.1:10809
 ```
-
-
 
 ## git reset
 
