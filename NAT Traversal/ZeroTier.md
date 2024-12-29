@@ -1,20 +1,67 @@
-<<<<<<< HEAD
 # ZeroTier异地组网
 
+## Plan1. 配置Moon中转节点
 
+### 1. 安装zerotier并加入网络
 
-## 设置Moon节点
+```shell
+curl -s https://install.zerotier.com | sudo bash
+zerotier-cli join <network ID>
+```
 
+### 2. 生成Moon配置文件
 
+```shell
+cd /var/lib/zerotier-one
+sudo zerotier-idtool initmoon identity.public > moon.json
+```
 
-## 自定义根服务器
+### 3. 修改Moon配置文件 添加VPS公网IP与端口号
 
-=======
-# ZeroTier加入中转服务器
+```shell
+vim moon.json
 
-## 自建Planet根服务器
+"stableEndpoints": [ "IP/Port" ]
+```
+
+### 4. 生成Moon配置文件
+
+```shell
+sudo zerotier-idtool genmoon moon.json 
+# 生成一个类似000000xxxxxxxxxx.moon的文件
+```
+
+### 5. 应用配置文件
+
+```shell
+mkdir moons.d
+mv 000000xxxxxxxxxx.moon moons.d/
+```
+
+### 6. 重启zerotier服务
+
+```shell
+systemctl restart zerotier-one
+```
+
+### 7. 检查配置
+
+```shell
+zerotier-cil listpeers
+# 若成功，应当出现带有MOON标记的节点
+```
+
+## 客户端配置
+
+```shell
+zerotier-cli join <network_id>
+zerotier-cli orbit <moon_id> <moon_id>
+systemctl restart zerotier-one
+```
 
 ---
+
+## Plan2. 自建Planet根服务器
 
 2024.06.30更新
 
@@ -106,9 +153,3 @@ zerotier-cli peers
 ```
 
 加入后到网页控制台进行授权
-
-
-
-## 配置Moon中转节点
-
->>>>>>> 45729f08548e9ba6e8661456a8e28e2774185e69
