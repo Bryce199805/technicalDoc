@@ -47,7 +47,7 @@ systemctl restart zerotier-one
 ### 7. 检查配置
 
 ```shell
-zerotier-cil listpeers
+zerotier-cli listpeers
 # 若成功，应当出现带有MOON标记的节点
 ```
 
