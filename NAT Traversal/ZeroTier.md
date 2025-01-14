@@ -22,6 +22,8 @@ sudo zerotier-idtool initmoon identity.public > moon.json
 vim moon.json
 
 "stableEndpoints": [ "IP/Port" ]
+
+## 对应端口防火墙需要放开 UDP类型
 ```
 
 ### 4. 生成Moon配置文件
