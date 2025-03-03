@@ -4,3 +4,7 @@
 
 # Git
 
+# Linux
+
+# NAT
+

@@ -22,6 +22,8 @@ sudo zerotier-idtool initmoon identity.public > moon.json
 vim moon.json
 
 "stableEndpoints": [ "IP/Port" ]
+
+## 对应端口防火墙需要放开 UDP类型
 ```
 
 ### 4. 生成Moon配置文件
@@ -47,7 +49,7 @@ systemctl restart zerotier-one
 ### 7. 检查配置
 
 ```shell
-zerotier-cil listpeers
+zerotier-cli listpeers
 # 若成功，应当出现带有MOON标记的节点
 ```
 
