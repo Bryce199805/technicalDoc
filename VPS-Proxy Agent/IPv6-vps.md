@@ -60,6 +60,21 @@ wireguard-go
 reboot
 ```
 
+2025.03.28更新，dmks包移除，直接安装wireguard包，无需手动编译更简单
+```shell
+# 直接安装
+apt install wireguard -y
+
+# 验证是否安装成功
+wg -h
+wg-quick -h
+
+touch /etc/wireguard/warp.conf
+
+# 重启vps
+reboot
+```
+
 shell 脚本 
 ```shell
 #!/bin/bash
