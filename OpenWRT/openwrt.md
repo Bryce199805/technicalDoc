@@ -12,13 +12,6 @@
 config zerotier 'global'
         option enabled '1'	# 设置服务状态为可用
         option config_path '/etc/zerotier'	# !!! 修改配置保存位置，从/var中迁出
-
-config network # 配置要加入网络的信息
-        option id '272f5eae16ec5cd1'
-        option allow_managed '1'
-        option allow_global '0'
-        option allow_default '0'
-        option allow_dns '0'
 ```
 
 ```shell
@@ -47,3 +40,7 @@ zerotier-cli listpeers
 - DHCP服务要关闭，不然会跟lan口冲突！
 
 ![image-20250325223153167](imgs/image-20250325223153167.png)
+
+### 路由配置
+
+需要在zerotier中添加路由表，使路由器下设备能够被访问
