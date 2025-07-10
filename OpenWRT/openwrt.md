@@ -4,7 +4,9 @@
 
 ### 解决方案
 
-在终端中配置openwrt，放弃web端可视化界面
+zerotier web界面上设置 config path为 `/etc/zerotier`
+
+![image-20250710150343431](imgs/image-20250710150343431.png)
 
 ```shell
 # 1.安装后不启动，修改/etc/config/zerotier配置文件
