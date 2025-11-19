@@ -2,6 +2,10 @@
 
 [创建和修改 systemd 单元文件](https://docs.redhat.com/zh-cn/documentation/red_hat_enterprise_linux/7/html/system_administrators_guide/sect-managing_services_with_systemd-unit_files)
 
+```shell
+vim /etc/systemd/system/ssh-tunnel.service
+```
+
 - unit: 包含不依赖于这个单元类型的通用选项。这些选项提供单元描述，指定单元的行为，并将依赖项设置为其他单元。
 - unit-type: 如果单元具有特定于类型的指令，则这些指令分组在以单元类型命名的部分中。例如，服务单元文件包含 [Service] 部分
 - install: 包含 `systemctl enable` 和 `disable` 命令使用的单元安装信息
