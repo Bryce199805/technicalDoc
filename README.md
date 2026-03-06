@@ -26,7 +26,16 @@ A collection of technical documentation and notes covering various topics.
 
 ## Coding
 - [Copilot-api 部署指南](Codeing/Copilot-api.md)
-- [Claude Code 用户手册 (操作指南)](Codeing/Claude-code-guild.md)
+- **Claude Code 完整中文教程**
+  - [总览与导读](Codeing/Claude-code-guild.md)
+  - [01 — 安装、启动与认证](Codeing/Claude-code-01-install.md)
+  - [02 — 核心工具详解](Codeing/Claude-code-02-core-tools.md)
+  - [03 — 交互模式完全指南](Codeing/Claude-code-03-interactive.md)
+  - [04 — 记忆系统与 CLAUDE.md](Codeing/Claude-code-04-memory.md)
+  - [05 — 权限、安全与沙箱](Codeing/Claude-code-05-permissions.md)
+  - [06 — 子代理与 Skills](Codeing/Claude-code-06-agents.md)
+  - [07 — MCP 服务器与 Hooks](Codeing/Claude-code-07-mcp-hooks.md)
+  - [08 — 实战工作流与最佳实践](Codeing/Claude-code-08-workflows.md)
 
 ## Docker
 - [Docker Install](Docker/docker%20install.md)
