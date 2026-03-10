@@ -57,10 +57,20 @@ sudo smbpasswd -a username
 ```
 执行后根据提示输入并确认密码。
 
-## 5. 重启 Samba 服务
-配置完成后，重启 Samba 相关服务使配置文件生效：
+## 5. 测试配置与重启服务
+配置完成后，可以使用 `testparm` 命令检查配置文件是否有语法错误：
+```bash
+testparm
+```
+如果输出 `Loaded services file OK.`，说明配置无误。
+
+然后，使配置生效。你可以选择重启服务：
 ```bash
 sudo systemctl restart smbd nmbd
+```
+或者，如果不想中断现有的连接，可以平滑重载配置文件：
+```bash
+sudo smbcontrol all reload-config
 ```
 
 ## 6. 在 Windows 中访问
