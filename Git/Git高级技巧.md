@@ -2,36 +2,22 @@
 
 ## 重置与回退
 
-### git reset 详解（整合原有文档）
-```bash
-# --soft  不删除工作空间改动代码，撤销commit，不撤销git add . 
-git reset --soft HEAD^          # 回退到上个版本
-git reset --soft HEAD~n         # 回退到前n次提交之前，若n=3，则可以回退到3次提交之前
-git reset --soft commit_sha     # 回滚到指定commit的sha码，推荐使用这种方式
-
-# --mixed (默认): 重置HEAD和暂存区，保留工作区
-git reset HEAD^                 # 撤销上次提交和add操作
-git reset commit_hash          # 回退到指定提交，变更保留在工作区
-
-# --hard: 删除工作空间改动代码，撤销commit，撤销git add . 
-git reset --hard HEAD^          # 完全回退到上次版本
-git reset --hard HEAD~n         # 回退到前n次提交之前
-git reset --hard commit_sha     # 回滚到指定commit的sha码
-
-# 执行上述命令后，如果要推送到远程仓库
-git push origin HEAD --force    # 强推到远程仓库（谨慎使用）
-```
-
-### 三种重置模式对比
+### git reset 三种模式
 ```bash
 # --soft: 仅重置HEAD，保留暂存区和工作区
 git reset --soft HEAD^          # 撤销上次提交，保留变更在暂存区
+git reset --soft commit_hash    # 回滚到指定commit
 
 # --mixed (默认): 重置HEAD和暂存区，保留工作区
 git reset HEAD^                 # 撤销上次提交和add操作
+git reset commit_hash          # 回退到指定提交
 
 # --hard: 重置HEAD、暂存区和工作区（危险！）
 git reset --hard HEAD^          # 完全回退到上次提交前状态
+git reset --hard commit_hash    # 完全回滚到指定commit
+
+# 强推到远程（谨慎使用）
+git push origin HEAD --force
 ```
 
 ### 找回误删的提交
@@ -78,94 +64,26 @@ drop    - 删除提交
 
 ## 子模块 (Submodules)
 
-### git submodule 操作（整合原有文档）
-```bash
-# 添加子模块
-git submodule add <submodule git repo> <name>  # 通过该命令可将文件夹关联到其他仓库
-
-# 初始化和更新子模块
-git submodule init
-git submodule update
-# 或一次性完成
-git submodule update --init --recursive
-```
-
-### 添加子模块（详细步骤）
-```bash
-git submodule add https://github.com/Bryce199805/cxx_interface.git cxx_interface
-```
-
-### 删除子模块（原有文档详细步骤）
-```bash
-# 1. 删除子模块文件夹
-git rm --cached <name>
-rm -rf <name>
-
-# 2. 删除 .gitmodules 文件中相关子模块的信息，类似于：
-# [submodule "cxx_interface"]
-#         path = cxx_interface
-#         url = https://github.com/Bryce199805/cxx_interface.git
-
-# 3. 删除 .git/config 中相关子模块信息，类似于：
-# [submodule "cxx_interface"]
-#         url = https://github.com/Bryce199805/cxx_interface.git
-#         active = true
-
-# 4. 删除 .git 文件夹中的相关子模块文件
-rm -rf .git/modules/cxx_interface
-```
-
-### 常规子模块操作
+### 基本操作
 ```bash
 # 添加子模块
 git submodule add <repository-url> <path>
-git submodule add https://github.com/user/repo.git libs/external-lib
 
 # 克隆含子模块的仓库
 git clone --recursive <repository-url>
 
-# 更新子模块
-git submodule update --remote
-```
-
-### 克隆含子模块的仓库
-```bash
-# 方法1：递归克隆
-git clone --recursive <repository-url>
-
-# 方法2：克隆后初始化
-git clone <repository-url>
-cd repo
+# 初始化和更新子模块
 git submodule init
 git submodule update
-```
+git submodule update --init --recursive
 
-### 更新子模块
-```bash
-# 更新所有子模块到最新提交
+# 更新子模块到最新提交
 git submodule update --remote
 
-# 更新特定子模块
-git submodule update --remote path/to/submodule
-
-# 进入子模块目录手动更新
-git submodule foreach git pull origin main
-```
-
-### 删除子模块
-```bash
-# 1. 取消注册子模块
+# 删除子模块
 git submodule deinit -f path/to/submodule
-
-# 2. 从索引中删除
 git rm -f path/to/submodule
-
-# 3. 删除.git中的子模块数据
-git config -f .git/config --remove-section submodule.path/to/submodule
 rm -rf .git/modules/path/to/submodule
-
-# 4. 删除物理目录（如果存在）
-rm -rf path/to/submodule
 ```
 
 ## 子树合并 (Subtree)
