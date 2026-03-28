@@ -1,0 +1,95 @@
+# stcp
+# 被访问端
+serverAddr = "x.x.x.x"
+serverPort = 7000
+auth.token = "secret token 1"
+
+[[proxies]]
+name = "secret-ssh"
+type = "stcp"
+secretKey = "secret token 2"
+localIP = "127.0.0.1"
+localPort = 22
+
+[[proxies]]
+name = "remote-desktop"
+type = "sucp"
+secretKey = "secret token 3"
+localIP = "127.0.0.1"
+localPort = 3389
+
+# 访问端
+serverAddr = "x.x.x.x"
+serverPort = 7000
+auth.token = "secret token 1"
+
+[[visitors]]
+name = "ssh-visitor"
+type = "stcp"
+serverName = "secret-ssh"
+secretKey = "secret token 2"
+bindAddr = "127.0.0.1"
+bindPort = 6000
+
+[[visitors]]
+name = "remote-visitor"
+type = "stcp"	# 远程桌面不支持sudp
+serverName = "remote-desktop"
+secretKey = "secret token 3"
+bindAddr = "127.0.0.1"
+bindPort = 6001
+
+# xtcp
+# 被访问端
+serverAddr = "x.x.x.x"
+serverPort = 7000
+auth.token = "secret token 1"
+
+[[proxies]]
+name = "stcp-ssh"
+type = "stcp"
+secretKey = "secret token 2"
+localIP = "127.0.0.1"
+localPort = 22
+
+[[proxies]]
+name = "p2p_ssh"
+type = "xtcp"
+secretKey = "secret token 3"
+localIP = "127.0.0.1"
+localPort = 22
+
+[[proxies]]
+name = "stcp-remote-desktop"
+type = "stcp"
+secretKey = "secret token 4"
+localIP = "127.0.0.1"
+localPort = 3389
+
+[[proxies]]
+name = "p2p_remote-desktop"
+type = "xtcp"
+secretKey = "secret token 5"
+localIP = "127.0.0.1"
+localPort = 3389
+
+# 访问端
+serverAddr = "x.x.x.x"
+serverPort = 7000
+auth.token = "secret token 1"
+
+[[visitors]]
+name = "ssh-visitor"
+type = "stcp"
+serverName = "secret-ssh"
+secretKey = "secret token 2"
+bindAddr = "127.0.0.1"
+bindPort = 6000
+
+[[visitors]]
+name = "remote-visitor"
+type = "stcp"	# 远程桌面不支持sudp
+serverName = "remote-desktop"
+secretKey = "secret token 3"
+bindAddr = "127.0.0.1"
+bindPort = 6001
