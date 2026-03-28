@@ -14,11 +14,8 @@ A collection of technical documentation and notes covering various topics.
 - [Linux Option](#linux-option)
 - [Markdown](#markdown)
 - [Multipass](#multipass)
-- [NAT Traversal](#nat-traversal)
 - [Network](#network)
-- [OpenWRT](#openwrt)
 - [TexLive](#texlive)
-- [VPS-Proxy Agent](#vps-proxy-agent)
 
 ---
 
@@ -61,14 +58,15 @@ A collection of technical documentation and notes covering various topics.
 - [Static IP Address for Linux](HyperV/StaticIP.md)
 
 ## Linux Option
-- [Cron Python task](Linux%20Option/cron.md)
-- [Shutdown](Linux%20Option/shutdown.md)
-- [SSH Tunnel](Linux%20Option/SSH-Tunnel.md)
-- [User & Group](Linux%20Option/User%20&%20Group.md)
-- [SSH & SCP](Linux%20Option/ssh%20&%20scp.md)
-- [Systemd Unit](Linux%20Option/systemd-unit.md)
-- [su & sudo](Linux%20Option/Root%20Permission.md)
-- [SSH Log in](Linux%20Option/SSH%20Login.md)
+- [Cron Python task](LinuxOption/cron.md)
+- [Shutdown](LinuxOption/shutdown.md)
+- [SSH Tunnel](LinuxOption/SSH-Tunnel.md)
+- [User & Group](LinuxOption/User%20&%20Group.md)
+- [SSH & SCP](LinuxOption/ssh%20&%20scp.md)
+- [Systemd Unit](LinuxOption/systemd-unit.md)
+- [su & sudo](LinuxOption/Root%20Permission.md)
+- [SSH Log in](LinuxOption/SSH%20Login.md)
+- [Samba](LinuxOption/Samba.md)
 
 ## Markdown
 - **Markdown 语法规范速查**
@@ -85,20 +83,17 @@ A collection of technical documentation and notes covering various topics.
 ## Multipass
 - [Ubuntu 轻量级虚拟机](Mutilpass/mutilpass.md)
 
-## NAT Traversal
-- [ZeroTier异地组网](NAT%20Traversal/ZeroTier.md)
-- [Fast Reverse Proxy](NAT%20Traversal/FRP.md)
-
 ## Network
 - [SSL 证书配置](Network/SSL证书配置.md)
-
-## OpenWRT
-- [OpenWRT](OpenWRT/openwrt.md)
-- [接口选项卡](OpenWRT/mwan.md)
-- [校园网环境IPV6设置](OpenWRT/ipv6.md)
+- **NAT Traversal / 内网穿透**
+  - [ZeroTier 异地组网](Network/NAT%20Traversal/ZeroTier.md)
+  - [FRP 反向代理](Network/NAT%20Traversal/FRP.md)
+- **OpenWRT**
+  - [OpenWRT 配置](Network/OpenWRT/openwrt.md)
+  - [接口选项卡 mwan](Network/OpenWRT/mwan.md)
+  - [校园网环境 IPv6 设置](Network/OpenWRT/ipv6.md)
+- **VPS Proxy Agent**
+  - [IPv6 Only VPS 配置](Network/VPSProxyAgent/IPv6-vps.md)
 
 ## TexLive
 - [Tex Live in WSL](TexLive/texLive%20in%20WSL.md)
-
-## VPS-Proxy Agent
-- [IPv6 Only Vps Configuration](VPS-Proxy%20Agent/IPv6-vps.md)
