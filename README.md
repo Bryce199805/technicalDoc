@@ -11,7 +11,11 @@ A collection of technical documentation and notes covering various topics.
 - [Docker](#docker)
 - [Git](#git)
 - [HyperV](#hyperv)
-- [Linux Option](#linux-option)
+- [Linux](#linux)
+  - [CLI Tools](#cli-tools)
+  - [System Admin](#system-admin)
+  - [Network](#linux-network)
+  - [File Share](#file-share)
 - [Markdown](#markdown)
 - [Multipass](#multipass)
 - [Network](#network)
@@ -57,16 +61,35 @@ A collection of technical documentation and notes covering various topics.
 - [Hyper-V Switch](HyperV/SwitchSetting.md)
 - [Static IP Address for Linux](HyperV/StaticIP.md)
 
-## Linux Option
-- [Cron Python task](LinuxOption/cron.md)
-- [Shutdown](LinuxOption/shutdown.md)
-- [SSH Tunnel](LinuxOption/SSH-Tunnel.md)
-- [User & Group](LinuxOption/User%20&%20Group.md)
-- [SSH & SCP](LinuxOption/ssh%20&%20scp.md)
-- [Systemd Unit](LinuxOption/systemd-unit.md)
-- [su & sudo](LinuxOption/Root%20Permission.md)
-- [SSH Log in](LinuxOption/SSH%20Login.md)
-- [Samba](LinuxOption/Samba.md)
+## Linux
+
+### CLI Tools
+- [终端工具安装清单](Linux/CLI-Tools/00-安装清单.md)
+- [快捷安装脚本](Linux/CLI-Tools/install.sh)
+- [zsh + Oh My Zsh](Linux/CLI-Tools/01-zsh-ohmyzsh.md)
+- [eza 现代化 ls](Linux/CLI-Tools/02-eza.md)
+- [bat 现代化 cat](Linux/CLI-Tools/03-bat.md)
+- [zoxide 智能目录跳转](Linux/CLI-Tools/04-zoxide.md)
+- [fzf 模糊搜索](Linux/CLI-Tools/05-fzf.md)
+- [btop 系统监控](Linux/CLI-Tools/06-btop.md)
+- [tldr 命令文档](Linux/CLI-Tools/07-tldr.md)
+- [Zellij 终端复用](Linux/CLI-Tools/08-zellij.md)
+- [Neovim + LazyVim](Linux/CLI-Tools/09-neovim-lazyvim.md)
+
+### System Admin
+- [Cron 定时任务](Linux/System-Admin/cron.md)
+- [Systemd Unit 服务管理](Linux/System-Admin/systemd-unit.md)
+- [Shutdown 定时关机](Linux/System-Admin/shutdown.md)
+- [su & sudo 权限管理](Linux/System-Admin/Root-Permission.md)
+- [User & Group 用户组管理](Linux/System-Admin/User-Group.md)
+
+### Linux Network
+- [SSH 登录配置](Linux/Network/SSH-Login.md)
+- [SSH & SCP 使用](Linux/Network/SSH-SCP.md)
+- [SSH Tunnel 隧道](Linux/Network/SSH-Tunnel.md)
+
+### File Share
+- [Samba 文件共享](Linux/File-Share/Samba.md)
 
 ## Markdown
 - **Markdown 语法规范速查**
