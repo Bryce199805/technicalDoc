@@ -3,6 +3,7 @@
 # ============================================
 # Linux CLI Tools Installer
 # 交互式安装脚本 - 支持用户级安装
+# 支持国内镜像源加速
 # ============================================
 
 set -e
@@ -26,6 +27,82 @@ command_exists() {
 }
 
 # ============================================
+# 镜像源配置
+# ============================================
+
+# GitHub 镜像加速 (国内用户)
+GITHUB_MIRROR="https://mirror.ghproxy.com/"
+
+# Gitee 镜像源
+OHMYZSH_GITEE="https://gitee.com/mirrors/oh-my-zsh.git"
+POWERLEVEL10K_GITEE="https://gitee.com/romkatv/powerlevel10k.git"
+ZSH_AUTOSUGGESTIONS_GITEE="https://gitee.com/zsh-users/zsh-autosuggestions.git"
+ZSH_SYNTAX_HIGHLIGHTING_GITEE="https://gitee.com/zsh-users/zsh-syntax-highlighting.git"
+ZSH_COMPLETIONS_GITEE="https://gitee.com/zsh-users/zsh-completions.git"
+
+# GitHub 源
+OHMYZSH_GITHUB="https://github.com/ohmyzsh/ohmyzsh.git"
+POWERLEVEL10K_GITHUB="https://github.com/romkatv/powerlevel10k.git"
+ZSH_AUTOSUGGESTIONS_GITHUB="https://github.com/zsh-users/zsh-autosuggestions.git"
+ZSH_SYNTAX_HIGHLIGHTING_GITHUB="https://github.com/zsh-users/zsh-syntax-highlighting.git"
+ZSH_COMPLETIONS_GITHUB="https://github.com/zsh-users/zsh-completions.git"
+FZF_TAB_GITHUB="https://github.com/Aloxaf/fzf-tab.git"
+
+# 是否使用国内镜像
+USE_CHINA_MIRROR=false
+
+# 检测是否在中国大陆
+check_china_network() {
+    # 尝试访问 GitHub，如果失败则可能在中国大陆
+    if curl -s --connect-timeout 3 "https://github.com" > /dev/null 2>&1; then
+        return 1
+    else
+        return 0
+    fi
+}
+
+# 选择镜像源
+select_mirror() {
+    echo ""
+    echo "请选择下载源:"
+    echo "  1) GitHub (国外服务器或有代理)"
+    echo "  2) 国内镜像源 (Gitee + ghproxy 加速)"
+    echo ""
+
+    # 自动检测
+    if check_china_network; then
+        print_warning "检测到可能无法直接访问 GitHub，推荐使用国内镜像"
+    fi
+
+    read -p "请选择 [1/2] (默认: 国内镜像): " mirror_choice
+
+    case "$mirror_choice" in
+        1)
+            USE_CHINA_MIRROR=false
+            print_info "使用 GitHub 源"
+            ;;
+        2|"")
+            USE_CHINA_MIRROR=true
+            print_info "使用国内镜像源"
+            ;;
+        *)
+            USE_CHINA_MIRROR=true
+            print_info "使用国内镜像源"
+            ;;
+    esac
+}
+
+# 获取加速后的 URL
+get_accelerated_url() {
+    local url="$1"
+    if [ "$USE_CHINA_MIRROR" = true ]; then
+        echo "${GITHUB_MIRROR}${url}"
+    else
+        echo "$url"
+    fi
+}
+
+# ============================================
 # 安装选项菜单
 # ============================================
 
@@ -33,6 +110,7 @@ show_menu() {
     echo ""
     echo "============================================"
     echo "    Linux CLI Tools 快速安装脚本"
+    echo "    当前镜像源: $([ "$USE_CHINA_MIRROR" = true ] && echo '国内镜像' || echo 'GitHub')"
     echo "============================================"
     echo ""
     echo "Shell 环境:"
@@ -58,6 +136,7 @@ show_menu() {
     echo "  b) 常用工具套装 (5-8)"
     echo "  c) 全部安装 (1-12)"
     echo ""
+    echo "  s) 切换镜像源"
     echo "  q) 退出"
     echo ""
 }
@@ -97,19 +176,26 @@ install_oh_my_zsh() {
         return 0
     fi
 
-    # 检查 git 和 curl/wget
+    # 检查 git
     if ! command_exists git; then
         print_error "需要先安装 git"
         return 1
     fi
 
-    if command_exists curl; then
-        sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-    elif command_exists wget; then
-        sh -c "$(wget -qO- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+    if [ "$USE_CHINA_MIRROR" = true ]; then
+        # 使用 Gitee 镜像
+        git clone "$OHMYZSH_GITEE" "$HOME/.oh-my-zsh"
+        cp "$HOME/.oh-my-zsh/templates/zshrc.zsh-template" "$HOME/.zshrc"
     else
-        print_error "需要 curl 或 wget"
-        return 1
+        # 使用 GitHub
+        if command_exists curl; then
+            sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+        elif command_exists wget; then
+            sh -c "$(wget -qO- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+        else
+            print_error "需要 curl 或 wget"
+            return 1
+        fi
     fi
 
     print_success "Oh My Zsh 安装完成"
@@ -125,7 +211,12 @@ install_powerlevel10k() {
         return 0
     fi
 
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$theme_dir"
+    if [ "$USE_CHINA_MIRROR" = true ]; then
+        git clone --depth=1 "$POWERLEVEL10K_GITEE" "$theme_dir"
+    else
+        git clone --depth=1 "$POWERLEVEL10K_GITHUB" "$theme_dir"
+    fi
+
     print_success "powerlevel10k 主题安装完成"
 }
 
@@ -134,13 +225,22 @@ install_zsh_plugins() {
     print_info "安装 zsh 插件..."
     local plugins_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins"
 
-    # 插件列表
-    declare -A plugins=(
-        ["zsh-autosuggestions"]="https://github.com/zsh-users/zsh-autosuggestions"
-        ["zsh-syntax-highlighting"]="https://github.com/zsh-users/zsh-syntax-highlighting"
-        ["zsh-completions"]="https://github.com/zsh-users/zsh-completions"
-        ["fzf-tab"]="https://github.com/Aloxaf/fzf-tab"
-    )
+    if [ "$USE_CHINA_MIRROR" = true ]; then
+        # 使用 Gitee 镜像
+        declare -A plugins=(
+            ["zsh-autosuggestions"]="$ZSH_AUTOSUGGESTIONS_GITEE"
+            ["zsh-syntax-highlighting"]="$ZSH_SYNTAX_HIGHLIGHTING_GITEE"
+            ["zsh-completions"]="$ZSH_COMPLETIONS_GITEE"
+        )
+    else
+        # 使用 GitHub
+        declare -A plugins=(
+            ["zsh-autosuggestions"]="$ZSH_AUTOSUGGESTIONS_GITHUB"
+            ["zsh-syntax-highlighting"]="$ZSH_SYNTAX_HIGHLIGHTING_GITHUB"
+            ["zsh-completions"]="$ZSH_COMPLETIONS_GITHUB"
+            ["fzf-tab"]="$FZF_TAB_GITHUB"
+        )
+    fi
 
     for plugin in "${!plugins[@]}"; do
         local plugin_path="$plugins_dir/$plugin"
@@ -151,6 +251,15 @@ install_zsh_plugins() {
             print_success "$plugin 安装完成"
         fi
     done
+
+    # fzf-tab 国内镜像单独处理
+    if [ "$USE_CHINA_MIRROR" = true ]; then
+        local fzf_tab_path="$plugins_dir/fzf-tab"
+        if [ ! -d "$fzf_tab_path" ]; then
+            git clone "$(get_accelerated_url "$FZF_TAB_GITHUB")" "$fzf_tab_path"
+            print_success "fzf-tab 安装完成"
+        fi
+    fi
 }
 
 # 安装 zoxide
@@ -161,7 +270,13 @@ install_zoxide() {
         return 0
     fi
 
-    curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+    if [ "$USE_CHINA_MIRROR" = true ]; then
+        # 使用国内加速下载
+        local install_url="$(get_accelerated_url "https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh")"
+        curl -sS "$install_url" | bash
+    else
+        curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+    fi
 
     # 添加到 PATH
     if ! grep -q 'export PATH="$HOME/.local/bin:$PATH"' "$HOME/.zshrc" 2>/dev/null; then
@@ -180,30 +295,37 @@ install_eza() {
         return 0
     fi
 
-    # 检测包管理器
+    # 优先使用包管理器
     if command_exists apt; then
-        sudo apt update
-        sudo apt install -y gpg
-        sudo mkdir -p /etc/apt/keyrings
-        wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc | sudo gpg --dearmor -o /etc/apt/keyrings/gierens.gpg
-        echo "deb [signed-by=/etc/apt/keyrings/gierens.gpg] http://deb.gierens.de/stable ./" | sudo tee /etc/apt/sources.list.d/gierens.list
-        sudo chmod 644 /etc/apt/keyrings/gierens.gpg /etc/apt/sources.list.d/gierens.list
-        sudo apt update && sudo apt install -y eza
+        sudo apt update && sudo apt install -y eza 2>/dev/null && {
+            print_success "eza 安装完成"
+            return 0
+        }
     elif command_exists yum || command_exists dnf; then
-        sudo dnf install -y eza || sudo yum install -y eza
-    else
-        # 从 GitHub releases 下载二进制
-        local arch=$(uname -m)
-        case $arch in
-            x86_64) arch="x86_64" ;;
-            aarch64) arch="aarch64" ;;
-            *) print_error "不支持的架构: $arch"; return 1 ;;
-        esac
+        sudo dnf install -y eza 2>/dev/null || sudo yum install -y eza 2>/dev/null && {
+            print_success "eza 安装完成"
+            return 0
+        }
+    fi
 
-        local latest_url=$(curl -s https://api.github.com/repos/eza-community/eza/releases/latest | grep "browser_download_url.*${arch}-unknown-linux-gnu.tar.gz\"" | cut -d '"' -f 4)
-        curl -L "$latest_url" | tar xz -C "$HOME/.local/bin" eza
-        print_success "eza 安装完成 (二进制)"
-        return 0
+    # 从 GitHub releases 下载二进制
+    print_info "从 GitHub 下载 eza 二进制..."
+    local arch=$(uname -m)
+    case $arch in
+        x86_64) arch="x86_64" ;;
+        aarch64) arch="aarch64" ;;
+        *) print_error "不支持的架构: $arch"; return 1 ;;
+    esac
+
+    mkdir -p "$HOME/.local/bin"
+
+    if [ "$USE_CHINA_MIRROR" = true ]; then
+        local api_url="$(get_accelerated_url "https://api.github.com/repos/eza-community/eza/releases/latest")"
+        local download_url=$(curl -s "$api_url" | grep "browser_download_url.*${arch}-unknown-linux-gnu.tar.gz\"" | head -1 | cut -d '"' -f 4)
+        curl -L "$(get_accelerated_url "$download_url")" | tar xz -C "$HOME/.local/bin" eza
+    else
+        local download_url=$(curl -s https://api.github.com/repos/eza-community/eza/releases/latest | grep "browser_download_url.*${arch}-unknown-linux-gnu.tar.gz\"" | head -1 | cut -d '"' -f 4)
+        curl -L "$download_url" | tar xz -C "$HOME/.local/bin" eza
     fi
 
     print_success "eza 安装完成"
@@ -246,7 +368,11 @@ install_fzf() {
         sudo apt update && sudo apt install -y fzf
     else
         # 从 GitHub 安装
-        git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
+        if [ "$USE_CHINA_MIRROR" = true ]; then
+            git clone --depth 1 "$(get_accelerated_url "https://github.com/junegunn/fzf.git")" "$HOME/.fzf"
+        else
+            git clone --depth 1 https://github.com/junegunn/fzf.git "$HOME/.fzf"
+        fi
         "$HOME/.fzf/install" --key-bindings --completion --no-update-rc --no-bash --no-fish
     fi
 
@@ -288,15 +414,12 @@ install_tldr() {
         if command_exists npm; then
             npm install -g tldr
         elif command_exists pip3; then
-            pip3 install tldr
+            pip3 install tldr -i https://pypi.tuna.tsinghua.edu.cn/simple
         else
             print_warning "请手动安装 tldr (需要 npm 或 pip)"
             return 1
         fi
     fi
-
-    # 更新缓存
-    tldr --update 2>/dev/null || true
 
     print_success "tldr 安装完成"
 }
@@ -320,7 +443,11 @@ install_neovim() {
 
     # 安装 LazyVim starter
     print_info "配置 LazyVim..."
-    git clone https://github.com/LazyVim/starter "$HOME/.config/nvim" 2>/dev/null || true
+    if [ "$USE_CHINA_MIRROR" = true ]; then
+        git clone "$(get_accelerated_url "https://github.com/LazyVim/starter")" "$HOME/.config/nvim" 2>/dev/null || true
+    else
+        git clone https://github.com/LazyVim/starter "$HOME/.config/nvim" 2>/dev/null || true
+    fi
     rm -rf "$HOME/.config/nvim/.git"
 
     print_success "Neovim + LazyVim 安装完成"
@@ -335,19 +462,30 @@ install_zellij() {
     fi
 
     if command_exists apt; then
-        sudo apt update && sudo apt install -y zellij
-    else
-        # 从 GitHub releases 下载
-        local arch=$(uname -m)
-        case $arch in
-            x86_64) arch="x86_64" ;;
-            aarch64) arch="aarch64" ;;
-            *) print_error "不支持的架构: $arch"; return 1 ;;
-        esac
+        sudo apt update && sudo apt install -y zellij 2>/dev/null && {
+            print_success "Zellij 安装完成"
+            return 0
+        }
+    fi
 
-        local latest_url=$(curl -s https://api.github.com/repos/zellij-org/zellij/releases/latest | grep "browser_download_url.*${arch}-unknown-linux-musl.tar.gz\"" | cut -d '"' -f 4)
-        mkdir -p "$HOME/.local/bin"
-        curl -L "$latest_url" | tar xz -C "$HOME/.local/bin" zellij
+    # 从 GitHub releases 下载
+    print_info "从 GitHub 下载 Zellij 二进制..."
+    local arch=$(uname -m)
+    case $arch in
+        x86_64) arch="x86_64" ;;
+        aarch64) arch="aarch64" ;;
+        *) print_error "不支持的架构: $arch"; return 1 ;;
+    esac
+
+    mkdir -p "$HOME/.local/bin"
+
+    if [ "$USE_CHINA_MIRROR" = true ]; then
+        local api_url="$(get_accelerated_url "https://api.github.com/repos/zellij-org/zellij/releases/latest")"
+        local download_url=$(curl -s "$api_url" | grep "browser_download_url.*${arch}-unknown-linux-musl.tar.gz\"" | head -1 | cut -d '"' -f 4)
+        curl -L "$(get_accelerated_url "$download_url")" | tar xz -C "$HOME/.local/bin" zellij
+    else
+        local download_url=$(curl -s https://api.github.com/repos/zellij-org/zellij/releases/latest | grep "browser_download_url.*${arch}-unknown-linux-musl.tar.gz\"" | head -1 | cut -d '"' -f 4)
+        curl -L "$download_url" | tar xz -C "$HOME/.local/bin" zellij
     fi
 
     print_success "Zellij 安装完成"
@@ -412,6 +550,9 @@ main() {
     # 确保 .local/bin 存在
     mkdir -p "$HOME/.local/bin"
 
+    # 选择镜像源
+    select_mirror
+
     while true; do
         show_menu
         read -p "请输入选项 (多个选项用空格分隔): " choices
@@ -420,6 +561,10 @@ main() {
             q|Q)
                 print_info "退出安装"
                 exit 0
+                ;;
+            s|S)
+                select_mirror
+                continue
                 ;;
             a|A)
                 choices="1 2 3 4"
