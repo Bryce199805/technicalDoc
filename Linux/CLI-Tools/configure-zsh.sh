@@ -100,33 +100,41 @@ ZSHRC_BASE
     # 添加完整配置
     cat >> "$zshrc" << 'EOF'
 
-# ========== CLI Tools Aliases ==========
-# eza aliases
-alias ls='eza --icons=auto'
-alias l='eza -lh --icons=auto --group-directories-first'
-alias ll='eza -lah --icons=auto --group-directories-first'
-alias lt='eza --tree --level=2 --icons=auto'
-alias lt3='eza --tree --level=3 --icons=auto'
-alias la='eza -lah --icons=auto'
+# ========== 现代工具别名 ==========
+# zoxide - 智能目录跳转（替代 cd）
+if command -v zoxide &> /dev/null; then
+    eval "$(zoxide init zsh)"
+fi
 
-# bat aliases
-alias cat='bat --paging=never'
-alias c='bat'
-alias cl='bat --style=numbers --line-range'
+# fzf - 模糊搜索配置
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 
-# zoxide
-eval "$(zoxide init zsh)"
+# eza - 现代化 ls
+if command -v eza &> /dev/null; then
+    alias ls='eza --icons --group-directories-first'
+    alias l='eza -l --icons --group-directories-first'
+    alias ll='eza -la --icons --group-directories-first'
+    alias lt='eza -l --sort=modified --icons'
+    alias lS='eza -l --sort=size --icons'
+    alias t='eza --tree --level=2 --icons'
+    alias tt='eza --tree --level=3 --icons'
+    alias ta='eza --tree --level=3 --icons --all'
+fi
 
-# fzf
-eval "$(fzf --zsh)"
+# bat - 现代化 cat
+if command -v bat &> /dev/null; then
+    alias cat='bat --paging=never'
+    alias batcat='bat'
+    alias bathelp='bat --plain --language=help'
+    alias c='bat'
+    alias cl='bat --line-range'
+elif command -v batcat &> /dev/null; then
+    alias cat='batcat --paging=never'
+    alias bathelp='batcat --plain --language=help'
+    alias c='batcat'
+fi
 
-# System aliases
-alias ..='cd ..'
-alias ...='cd ../..'
-alias h='history'
-alias ccc='clear'
-
-# Git aliases
+# ========== Git 别名 ==========
 alias g='git'
 alias gs='git status'
 alias ga='git add'
@@ -134,13 +142,32 @@ alias gc='git commit'
 alias gp='git push'
 alias gl='git pull'
 alias gd='git diff'
-alias glog='git log --oneline --graph'
+alias glog='git log --oneline --graph --decorate'
 alias gb='git branch'
 alias gco='git checkout'
+alias gst='git stash'
 
-# Neovim aliases (if installed)
-alias v='nvim'
-alias vim='nvim'
+# ========== 快捷别名 ==========
+# 系统
+alias c='clear'
+alias h='history'
+alias j='jobs'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias ~='cd ~'
+alias -- -='cd -'
+
+# 目录
+alias mkdir='mkdir -pv'
+alias duf='du -sh * | sort -h'
+
+# 网络
+alias myip='curl -s ifconfig.me'
+alias ports='netstat -tulanp'
+
+# PATH 配置
+export PATH="$HOME/.local/bin:$PATH"
 EOF
 
     print_success ".zshrc 配置完成"
