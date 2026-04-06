@@ -38,7 +38,6 @@ OHMYZSH_GITEE="https://gitee.com/mirrors/oh-my-zsh.git"
 POWERLEVEL10K_GITEE="https://gitee.com/romkatv/powerlevel10k.git"
 ZSH_AUTOSUGGESTIONS_GITEE="https://gitee.com/zsh-users/zsh-autosuggestions.git"
 ZSH_SYNTAX_HIGHLIGHTING_GITEE="https://gitee.com/zsh-users/zsh-syntax-highlighting.git"
-ZSH_COMPLETIONS_GITEE="https://gitee.com/zsh-users/zsh-completions.git"
 
 # GitHub 源
 OHMYZSH_GITHUB="https://github.com/ohmyzsh/ohmyzsh.git"
@@ -51,16 +50,6 @@ FZF_TAB_GITHUB="https://github.com/Aloxaf/fzf-tab.git"
 # 是否使用国内镜像
 USE_CHINA_MIRROR=false
 
-# 检测是否在中国大陆
-check_china_network() {
-    # 尝试访问 GitHub，如果失败则可能在中国大陆
-    if curl -s --connect-timeout 3 "https://github.com" > /dev/null 2>&1; then
-        return 1
-    else
-        return 0
-    fi
-}
-
 # 选择镜像源
 select_mirror() {
     echo ""
@@ -68,11 +57,6 @@ select_mirror() {
     echo "  1) GitHub (国外服务器或有代理)"
     echo "  2) 国内镜像源 (Gitee + ghproxy 加速)"
     echo ""
-
-    # 自动检测
-    if check_china_network; then
-        print_warning "检测到可能无法直接访问 GitHub，推荐使用国内镜像"
-    fi
 
     read -p "请选择 [1/2] (默认: 国内镜像): " mirror_choice
 
@@ -225,41 +209,49 @@ install_zsh_plugins() {
     print_info "安装 zsh 插件..."
     local plugins_dir="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins"
 
-    if [ "$USE_CHINA_MIRROR" = true ]; then
-        # 使用 Gitee 镜像
-        declare -A plugins=(
-            ["zsh-autosuggestions"]="$ZSH_AUTOSUGGESTIONS_GITEE"
-            ["zsh-syntax-highlighting"]="$ZSH_SYNTAX_HIGHLIGHTING_GITEE"
-            ["zsh-completions"]="$ZSH_COMPLETIONS_GITEE"
-        )
-    else
-        # 使用 GitHub
-        declare -A plugins=(
-            ["zsh-autosuggestions"]="$ZSH_AUTOSUGGESTIONS_GITHUB"
-            ["zsh-syntax-highlighting"]="$ZSH_SYNTAX_HIGHLIGHTING_GITHUB"
-            ["zsh-completions"]="$ZSH_COMPLETIONS_GITHUB"
-            ["fzf-tab"]="$FZF_TAB_GITHUB"
-        )
-    fi
+    # Gitee 有镜像的插件
+    declare -A gitee_plugins=(
+        ["zsh-autosuggestions"]="$ZSH_AUTOSUGGESTIONS_GITEE"
+        ["zsh-syntax-highlighting"]="$ZSH_SYNTAX_HIGHLIGHTING_GITEE"
+    )
 
-    for plugin in "${!plugins[@]}"; do
+    # GitHub 源插件
+    declare -A github_plugins=(
+        ["zsh-autosuggestions"]="$ZSH_AUTOSUGGESTIONS_GITHUB"
+        ["zsh-syntax-highlighting"]="$ZSH_SYNTAX_HIGHLIGHTING_GITHUB"
+        ["zsh-completions"]="$ZSH_COMPLETIONS_GITHUB"
+        ["fzf-tab"]="$FZF_TAB_GITHUB"
+    )
+
+    # 安装插件
+    for plugin in zsh-autosuggestions zsh-syntax-highlighting; do
         local plugin_path="$plugins_dir/$plugin"
         if [ -d "$plugin_path" ]; then
             print_warning "$plugin 已安装，跳过"
         else
-            git clone "${plugins[$plugin]}" "$plugin_path"
+            if [ "$USE_CHINA_MIRROR" = true ]; then
+                git clone "${gitee_plugins[$plugin]}" "$plugin_path"
+            else
+                git clone "${github_plugins[$plugin]}" "$plugin_path"
+            fi
             print_success "$plugin 安装完成"
         fi
     done
 
-    # fzf-tab 国内镜像单独处理
-    if [ "$USE_CHINA_MIRROR" = true ]; then
-        local fzf_tab_path="$plugins_dir/fzf-tab"
-        if [ ! -d "$fzf_tab_path" ]; then
-            git clone "$(get_accelerated_url "$FZF_TAB_GITHUB")" "$fzf_tab_path"
-            print_success "fzf-tab 安装完成"
+    # zsh-completions 和 fzf-tab 只能从 GitHub 或代理下载
+    for plugin in zsh-completions fzf-tab; do
+        local plugin_path="$plugins_dir/$plugin"
+        if [ -d "$plugin_path" ]; then
+            print_warning "$plugin 已安装，跳过"
+        else
+            if [ "$USE_CHINA_MIRROR" = true ]; then
+                git clone "$(get_accelerated_url "${github_plugins[$plugin]}")" "$plugin_path"
+            else
+                git clone "${github_plugins[$plugin]}" "$plugin_path"
+            fi
+            print_success "$plugin 安装完成"
         fi
-    fi
+    done
 }
 
 # 安装 zoxide
