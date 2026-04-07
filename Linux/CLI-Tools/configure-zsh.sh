@@ -74,8 +74,8 @@ export ZSH="$HOME/.oh-my-zsh"
 # Theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Plugins
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting zoxide fzf)
+# Plugins (不包含 zoxide 和 fzf，它们需要单独初始化)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 ZSHRC_BASE
@@ -88,8 +88,8 @@ ZSHRC_BASE
     # 设置主题
     sed -i 's/ZSH_THEME=".*"/ZSH_THEME="powerlevel10k\/powerlevel10k"/' "$zshrc"
 
-    # 设置插件
-    sed -i 's/plugins=(.*)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting zoxide fzf)/' "$zshrc"
+    # 设置插件 (不包含 zoxide 和 fzf)
+    sed -i 's/plugins=(.*)/plugins=(git zsh-autosuggestions zsh-syntax-highlighting)/' "$zshrc"
 
     # 检查是否已有配置块
     if grep -q "# ========== CLI Tools Aliases" "$zshrc" 2>/dev/null; then
@@ -101,13 +101,18 @@ ZSHRC_BASE
     cat >> "$zshrc" << 'EOF'
 
 # ========== 现代工具别名 ==========
+# 抑制 p10k instant prompt 警告
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
+
 # zoxide - 智能目录跳转（替代 cd）
 if command -v zoxide &> /dev/null; then
     eval "$(zoxide init zsh)"
 fi
 
 # fzf - 模糊搜索配置
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+if command -v fzf &> /dev/null; then
+    export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
+fi
 
 # eza - 现代化 ls
 if command -v eza &> /dev/null; then
