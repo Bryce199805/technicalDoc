@@ -124,47 +124,11 @@ fi
 # bat - 现代化 cat
 if command -v bat &> /dev/null; then
     alias cat='bat --paging=never'
-    alias batcat='bat'
     alias bathelp='bat --plain --language=help'
-    alias c='bat'
-    alias cl='bat --line-range'
 elif command -v batcat &> /dev/null; then
     alias cat='batcat --paging=never'
     alias bathelp='batcat --plain --language=help'
-    alias c='batcat'
 fi
-
-# ========== Git 别名 ==========
-alias g='git'
-alias gs='git status'
-alias ga='git add'
-alias gc='git commit'
-alias gp='git push'
-alias gl='git pull'
-alias gd='git diff'
-alias glog='git log --oneline --graph --decorate'
-alias gb='git branch'
-alias gco='git checkout'
-alias gst='git stash'
-
-# ========== 快捷别名 ==========
-# 系统
-alias c='clear'
-alias h='history'
-alias j='jobs'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias ~='cd ~'
-alias -- -='cd -'
-
-# 目录
-alias mkdir='mkdir -pv'
-alias duf='du -sh * | sort -h'
-
-# 网络
-alias myip='curl -s ifconfig.me'
-alias ports='netstat -tulanp'
 
 # PATH 配置
 export PATH="$HOME/.local/bin:$PATH"
