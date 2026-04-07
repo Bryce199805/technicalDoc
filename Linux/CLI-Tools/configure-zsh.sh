@@ -130,6 +130,12 @@ elif command -v batcat &> /dev/null; then
     alias bathelp='batcat --plain --language=help'
 fi
 
+# System aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias h='history'
+alias ccc='clear'
+
 # PATH 配置
 export PATH="$HOME/.local/bin:$PATH"
 EOF
