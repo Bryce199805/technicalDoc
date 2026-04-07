@@ -19,6 +19,7 @@ A collection of technical documentation and notes covering various topics.
 - [Markdown](#markdown)
 - [Multipass](#multipass)
 - [Network](#network)
+- [Node.js](#nodejs)
 - [TexLive](#texlive)
 
 ---
@@ -77,6 +78,7 @@ A collection of technical documentation and notes covering various topics.
 - [Neovim + LazyVim](Linux/CLI-Tools/09-neovim-lazyvim.md)
 
 ### System Admin
+- [Shell 配置指南 (bash & zsh)](Linux/System-Admin/shell-configuration-guide.md)
 - [Cron 定时任务](Linux/System-Admin/cron.md)
 - [Systemd Unit 服务管理](Linux/System-Admin/systemd-unit.md)
 - [Shutdown 定时关机](Linux/System-Admin/shutdown.md)
@@ -117,6 +119,11 @@ A collection of technical documentation and notes covering various topics.
   - [校园网环境 IPv6 设置](Network/OpenWRT/ipv6.md)
 - **VPS Proxy Agent**
   - [IPv6 Only VPS 配置](Network/VPSProxyAgent/IPv6-vps.md)
+
+## Node.js
+- **Node.js 开发环境配置**
+  - [Node.js 环境完整指南](Node.js/nodejs-environment-guide.md)
+  - 包含: nvm、npm、pnpm、yarn、Shell 配置、常见问题解决
 
 ## TexLive
 - [Tex Live in WSL](TexLive/texLive%20in%20WSL.md)
