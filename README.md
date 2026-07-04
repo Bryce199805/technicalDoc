@@ -1,4 +1,4 @@
-![GitHub License](https://img.shields.io/github/license/Bryce199805/technicalDoc) ![Docs](https://img.shields.io/badge/docs-96-blue) ![Topics](https://img.shields.io/badge/topics-12-green)
+![GitHub License](https://img.shields.io/github/license/Bryce199805/technicalDoc) ![Docs](https://img.shields.io/badge/docs-103-blue) ![Topics](https://img.shields.io/badge/topics-12-green)
 
 # Technical Documentation
 
@@ -150,6 +150,7 @@
 | [Shell 配置指南](Linux/System-Admin/shell-configuration-guide.md) | bash & zsh 配置 |
 | [Cron 定时任务](Linux/System-Admin/cron.md) | 计划任务管理 |
 | [Systemd Unit](Linux/System-Admin/systemd-unit.md) | 服务管理 |
+| [CGroup 与 Systemd Slice](Linux/System-Admin/CGroup/README.md) | 服务器资源控制与 slice 管理 |
 | [Shutdown 定时关机](Linux/System-Admin/shutdown.md) | 关机与重启 |
 | [su & sudo](Linux/System-Admin/Root-Permission.md) | 权限提升 |
 | [User & Group](Linux/System-Admin/User-Group.md) | 用户组管理 |
