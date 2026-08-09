@@ -1,8 +1,10 @@
 # CUDA Install
 
-Linux Service 无sodo权限安装特定版本CUDA
+Linux Server 无 sudo 权限安装特定版本 CUDA Toolkit。
 
-### 1.Download 
+> 本文只安装用户目录下的 CUDA Toolkit，不安装 GPU 驱动。开始前应确认宿主机 NVIDIA 驱动正常，并满足目标 CUDA 版本的最低要求。驱动、DKMS、Secure Boot 和版本兼容问题参见 [Linux GPU 驱动与 DKMS 快查](gpu-driver-dkms.md)。
+
+### 1. Download
 
 下载特定版本[cuda toolkit](https://developer.nvidia.com/cuda-toolkit-archive)
 
@@ -15,7 +17,7 @@ chmod +x cuda_12.1.1_530.30.02_linux.run
 
 ![image-20250330220359444](imgs/image-20250330220359444.png)
 
-### 2.Install
+### 2. Install
 
 进入脚本，同意用户协议
 
@@ -43,7 +45,7 @@ chmod +x cuda_12.1.1_530.30.02_linux.run
 
 ![image-20250330222213413](imgs/image-20250330222213413.png)
 
-### 3.CUDA_HOME set
+### 3. CUDA_HOME set
 
 配置环境变量，在.bashrc中添加PATH和LD_LIBRARY_PATH
 
@@ -55,4 +57,3 @@ export CUDA_HOME=/home/yufengming/cuda/cuda-12.1
 export PATH=$PATH:$CUDA_HOME/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CUDA_HOME/lib64
 ```
-

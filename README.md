@@ -245,7 +245,8 @@
 
 | 文档 | 说明 |
 |------|------|
-| [CUDA 安装](Torch/CUDA/cuda-install.md) | CUDA 驱动与工具包安装 |
+| [Linux GPU 驱动与 DKMS 快查](Torch/CUDA/gpu-driver-dkms.md) | NVIDIA/AMDGPU 驱动、DKMS、Secure Boot、兼容性与排障 |
+| [CUDA Toolkit 安装](Torch/CUDA/cuda-install.md) | 无 sudo 权限安装用户态 CUDA Toolkit |
 
 ---
 
