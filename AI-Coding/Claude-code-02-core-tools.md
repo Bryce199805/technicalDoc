@@ -1,6 +1,6 @@
 # Claude Code 核心工具详解
 
-> ⬅️ [上一章：安装与启动](Claude-code-01-install.md) | [返回总览](README.md) | ➡️ [下一章：交互模式](Claude-code-03-interactive.md)
+> ⬅️ [上一章：安装与启动](Claude-code-01-install.md) | [返回总览](Claude-code-guild.md) | ➡️ [下一章：交互模式](Claude-code-03-interactive.md)
 
 ---
 
@@ -974,4 +974,4 @@ Claude Code 的工具系统是其强大能力的基石。理解每个工具的�
 
 ---
 
-> ⬅️ [上一章：安装与启动](Claude-code-01-install.md) | [返回总览](README.md) | ➡️ [下一章：交互模式](Claude-code-03-interactive.md)
+> ⬅️ [上一章：安装与启动](Claude-code-01-install.md) | [返回总览](Claude-code-guild.md) | ➡️ [下一章：交互模式](Claude-code-03-interactive.md)

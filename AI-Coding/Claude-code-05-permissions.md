@@ -1,6 +1,6 @@
 # Claude Code 权限、安全与沙箱
 
-> ⬅️ [上一章：记忆系统](Claude-code-04-memory.md) | [返回总览](README.md) | ➡️ [下一章：子代理与Skills](Claude-code-06-agents.md)
+> ⬅️ [上一章：记忆系统](Claude-code-04-memory.md) | [返回总览](Claude-code-guild.md) | ➡️ [下一章：子代理与Skills](Claude-code-06-agents.md)
 
 ---
 
@@ -1030,4 +1030,4 @@ Claude Code 的权限和安全系统是多层次的防护体系：
 
 ---
 
-> ⬅️ [上一章：记忆系统](Claude-code-04-memory.md) | [返回总览](README.md) | ➡️ [下一章：子代理与Skills](Claude-code-06-agents.md)
+> ⬅️ [上一章：记忆系统](Claude-code-04-memory.md) | [返回总览](Claude-code-guild.md) | ➡️ [下一章：子代理与Skills](Claude-code-06-agents.md)

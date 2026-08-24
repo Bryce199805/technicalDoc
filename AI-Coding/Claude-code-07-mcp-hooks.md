@@ -1,6 +1,6 @@
 # Claude Code MCP 服务器与 Hooks
 
-> ⬅️ [上一章：子代理与Skills](Claude-code-06-agents.md) | [返回总览](README.md) | ➡️ [下一章：实战工作流](Claude-code-08-workflows.md)
+> ⬅️ [上一章：子代理与Skills](Claude-code-06-agents.md) | [返回总览](Claude-code-guild.md) | ➡️ [下一章：实战工作流](Claude-code-08-workflows.md)
 
 ---
 
@@ -914,4 +914,4 @@ claude mcp add my-server -- npx -y @example/server
 
 ---
 
-> ⬅️ [上一章：子代理与Skills](Claude-code-06-agents.md) | [返回总览](README.md) | ➡️ [下一章：实战工作流](Claude-code-08-workflows.md)
+> ⬅️ [上一章：子代理与Skills](Claude-code-06-agents.md) | [返回总览](Claude-code-guild.md) | ➡️ [下一章：实战工作流](Claude-code-08-workflows.md)

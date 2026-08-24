@@ -6,7 +6,7 @@
 
 | 主题 | 内容 |
 |------|------|
-| [Claude Code](Claude-Code/README.md) | 从安装、核心工具到 Agents、MCP、Hooks 和实战工作流 |
+| [Claude Code](Claude-code-guild.md) | 从安装、核心工具到 Agents、MCP、Hooks 和实战工作流 |
 | [Copilot API](Copilot-api.md) | Copilot API 部署笔记 |
 
 ## 推荐学习路径

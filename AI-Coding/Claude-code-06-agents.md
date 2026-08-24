@@ -1,6 +1,6 @@
 # Claude Code 子代理与 Skills
 
-> ⬅️ [上一章：权限与安全](Claude-code-05-permissions.md) | [返回总览](README.md) | ➡️ [下一章：MCP与Hooks](Claude-code-07-mcp-hooks.md)
+> ⬅️ [上一章：权限与安全](Claude-code-05-permissions.md) | [返回总览](Claude-code-guild.md) | ➡️ [下一章：MCP与Hooks](Claude-code-07-mcp-hooks.md)
 
 ---
 
@@ -973,4 +973,4 @@ Claude Code 的子代理和 Skills 系统为复杂任务提供了强大的处理
 
 ---
 
-> ⬅️ [上一章：权限与安全](Claude-code-05-permissions.md) | [返回总览](README.md) | ➡️ [下一章：MCP与Hooks](Claude-code-07-mcp-hooks.md)
+> ⬅️ [上一章：权限与安全](Claude-code-05-permissions.md) | [返回总览](Claude-code-guild.md) | ➡️ [下一章：MCP与Hooks](Claude-code-07-mcp-hooks.md)

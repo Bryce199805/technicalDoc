@@ -1,6 +1,6 @@
 # Claude Code 交互模式完全指南
 
-> ⬅️ [上一章：核心工具](Claude-code-02-core-tools.md) | [返回总览](README.md) | ➡️ [下一章：记忆系统](Claude-code-04-memory.md)
+> ⬅️ [上一章：核心工具](Claude-code-02-core-tools.md) | [返回总览](Claude-code-guild.md) | ➡️ [下一章：记忆系统](Claude-code-04-memory.md)
 
 ---
 
@@ -939,4 +939,4 @@ Claude 会：
 
 ---
 
-> ⬅️ [上一章：核心工具](Claude-code-02-core-tools.md) | [返回总览](README.md) | ➡️ [下一章：记忆系统](Claude-code-04-memory.md)
+> ⬅️ [上一章：核心工具](Claude-code-02-core-tools.md) | [返回总览](Claude-code-guild.md) | ➡️ [下一章：记忆系统](Claude-code-04-memory.md)

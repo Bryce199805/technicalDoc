@@ -1,6 +1,6 @@
 # Claude Code 记忆系统与 CLAUDE.md
 
-> ⬅️ [上一章：交互模式](Claude-code-03-interactive.md) | [返回总览](README.md) | ➡️ [下一章：权限与安全](Claude-code-05-permissions.md)
+> ⬅️ [上一章：交互模式](Claude-code-03-interactive.md) | [返回总览](Claude-code-guild.md) | ➡️ [下一章：权限与安全](Claude-code-05-permissions.md)
 
 ---
 
@@ -926,4 +926,4 @@ Claude Code 的记忆系统是提升开发效率的核心功能。合理利用 C
 
 ---
 
-> ⬅️ [上一章：交互模式](Claude-code-03-interactive.md) | [返回总览](README.md) | ➡️ [下一章：权限与安全](Claude-code-05-permissions.md)
+> ⬅️ [上一章：交互模式](Claude-code-03-interactive.md) | [返回总览](Claude-code-guild.md) | ➡️ [下一章：权限与安全](Claude-code-05-permissions.md)

@@ -6,8 +6,7 @@
 
 | 主题 | 入口 | 内容 |
 |------|------|------|
-| Drivers | [GPU 驱动](Drivers/README.md) | NVIDIA/AMDGPU、DKMS、Secure Boot、兼容性和排障 |
-| CUDA | [CUDA](CUDA/README.md) | 无 sudo 环境安装 CUDA Toolkit |
+| CUDA | [CUDA 与 GPU 环境](CUDA/README.md) | Linux GPU 驱动、DKMS、CUDA Toolkit、兼容性和排障 |
 
 ## 推荐学习路径
 

@@ -1,6 +1,6 @@
 # Claude Code 安装、启动与认证
 
-> ⬅️ [返回总览](README.md) | ➡️ [下一章：核心工具详解](Claude-code-02-core-tools.md)
+> ⬅️ [返回总览](Claude-code-guild.md) | ➡️ [下一章：核心工具详解](Claude-code-02-core-tools.md)
 
 ---
 
@@ -697,4 +697,4 @@ echo "Vertex mode: $CLAUDE_CODE_USE_VERTEX"
 
 ---
 
-> ⬅️ [返回总览](README.md) | ➡️ [下一章：核心工具详解](Claude-code-02-core-tools.md)
+> ⬅️ [返回总览](Claude-code-guild.md) | ➡️ [下一章：核心工具详解](Claude-code-02-core-tools.md)

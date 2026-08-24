@@ -2,7 +2,7 @@
 
 Linux Server 无 sudo 权限安装特定版本 CUDA Toolkit。
 
-> 本文只安装用户目录下的 CUDA Toolkit，不安装 GPU 驱动。开始前应确认宿主机 NVIDIA 驱动正常，并满足目标 CUDA 版本的最低要求。驱动、DKMS、Secure Boot 和版本兼容问题参见 [Linux GPU 驱动与 DKMS 快查](../Drivers/gpu-driver-dkms.md)。
+> 本文只安装用户目录下的 CUDA Toolkit，不安装 GPU 驱动。开始前应确认宿主机 NVIDIA 驱动正常，并满足目标 CUDA 版本的最低要求。驱动、DKMS、Secure Boot 和版本兼容问题参见 [Linux GPU 驱动与 DKMS 快查](gpu-driver-dkms.md)。
 
 ### 1. Download
 

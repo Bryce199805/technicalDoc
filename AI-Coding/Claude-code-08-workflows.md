@@ -1,6 +1,6 @@
 # Claude Code 实战工作流与最佳实践
 
-> ⬅️ [上一章：MCP与Hooks](Claude-code-07-mcp-hooks.md) | [返回总览](README.md)
+> ⬅️ [上一章：MCP与Hooks](Claude-code-07-mcp-hooks.md) | [返回总览](Claude-code-guild.md)
 
 ---
 
@@ -1386,4 +1386,4 @@ Claude Code 内部会使用子代理（Sub-agents）来处理复杂的搜索和�
 
 ---
 
-> ⬅️ [上一章：MCP与Hooks](Claude-code-07-mcp-hooks.md) | [返回总览](README.md)
+> ⬅️ [上一章：MCP与Hooks](Claude-code-07-mcp-hooks.md) | [返回总览](Claude-code-guild.md)
