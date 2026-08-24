@@ -1,4 +1,4 @@
-![GitHub License](https://img.shields.io/github/license/Bryce199805/technicalDoc) ![Docs](https://img.shields.io/badge/docs-124-blue) ![Topics](https://img.shields.io/badge/topics-11-green)
+![GitHub License](https://img.shields.io/github/license/Bryce199805/technicalDoc) ![Docs](https://img.shields.io/badge/docs-126-blue) ![Topics](https://img.shields.io/badge/topics-9-green)
 
 # Technical Documentation
 
@@ -8,24 +8,30 @@
 
 | 一级目录 | 当前内容 | 入口 |
 |----------|----------|------|
-| C++ | 智能指针、CMake | [进入 C++](C++/README.md) |
+| Programming | C++、Node.js | [进入 Programming](Programming/README.md) |
 | AI-Coding | Claude Code、Copilot API | [进入 AI-Coding](AI-Coding/README.md) |
 | Containers | Docker | [进入 Containers](Containers/README.md) |
 | Git | 基础、分支、协作、提交与排障 | [进入 Git](Git/README.md) |
 | Linux | 命令行工具、系统管理、CGroup | [进入 Linux](Linux/README.md) |
-| Markdown | 基础语法、扩展语法、公式与快捷键 | [进入 Markdown](Markdown/README.md) |
+| Technical-Writing | Markdown、TeX Live | [进入 Technical-Writing](Technical-Writing/README.md) |
 | Network | SSH、Nginx、TLS、内网穿透、OpenWrt、文件共享、VPS | [进入 Network](Network/README.md) |
-| Node.js | Node.js 开发环境 | [进入 Node.js](Node.js/README.md) |
 | GPU | GPU 驱动、DKMS、CUDA | [进入 GPU](GPU/README.md) |
-| TexLive | WSL 中的 TeX Live | [进入 TexLive](TexLive/README.md) |
 | Virtualization | KVM、Hyper-V、Multipass | [进入 Virtualization](Virtualization/README.md) |
 
-## [C++](C++/README.md)
+## [Programming](Programming/README.md)
+
+### [C++](Programming/C++/README.md)
 
 | 文档 | 内容 |
 |------|------|
-| [SmartPointer](C++/SmartPointer.md) | C++ 智能指针 |
-| [CMakeList](C++/CMakeList.md) | CMake 条件与配置笔记 |
+| [SmartPointer](Programming/C++/SmartPointer.md) | C++ 智能指针 |
+| [CMakeList](Programming/C++/CMakeList.md) | CMake 条件与配置笔记 |
+
+### [Node.js](Programming/Node.js/README.md)
+
+| 文档 | 内容 |
+|------|------|
+| [Node.js 开发环境](Programming/Node.js/nodejs-environment-guide.md) | 版本管理、包管理器与项目环境 |
 
 ## [AI-Coding](AI-Coding/README.md)
 
@@ -120,18 +126,26 @@
 | [05 生产实践](Linux/System-Admin/CGroup/05-production-playbook.md) | 生产环境操作手册 |
 | [06 CGroup v1 blkio](Linux/System-Admin/CGroup/06-cgroup-v1-blkio-manual.md) | blkio 手工限速 |
 
-## [Markdown](Markdown/README.md)
+## [Technical-Writing](Technical-Writing/README.md)
+
+### [Markdown](Technical-Writing/Markdown/README.md)
 
 | 文档 | 内容 |
 |------|------|
-| [01 基础语法](Markdown/01-基础语法.md) | 标题、列表、链接与图片 |
-| [02 文本格式](Markdown/02-文本格式.md) | 强调、引用与文本样式 |
-| [03 表格语法](Markdown/03-表格语法.md) | 表格书写与对齐 |
-| [04 数学公式](Markdown/04-数学公式.md) | LaTeX 数学公式参考 |
-| [05 代码块](Markdown/05-代码块.md) | 行内代码与围栏代码块 |
-| [06 扩展语法](Markdown/06-扩展语法.md) | 常见 Markdown 扩展 |
-| [07 特殊字符](Markdown/07-特殊字符.md) | 转义与特殊字符 |
-| [08 快捷键](Markdown/08-快捷键对照表.md) | Markdown 编辑器快捷键 |
+| [01 基础语法](Technical-Writing/Markdown/01-基础语法.md) | 标题、列表、链接与图片 |
+| [02 文本格式](Technical-Writing/Markdown/02-文本格式.md) | 强调、引用与文本样式 |
+| [03 表格语法](Technical-Writing/Markdown/03-表格语法.md) | 表格书写与对齐 |
+| [04 数学公式](Technical-Writing/Markdown/04-数学公式.md) | LaTeX 数学公式参考 |
+| [05 代码块](Technical-Writing/Markdown/05-代码块.md) | 行内代码与围栏代码块 |
+| [06 扩展语法](Technical-Writing/Markdown/06-扩展语法.md) | 常见 Markdown 扩展 |
+| [07 特殊字符](Technical-Writing/Markdown/07-特殊字符.md) | 转义与特殊字符 |
+| [08 快捷键](Technical-Writing/Markdown/08-快捷键对照表.md) | Markdown 编辑器快捷键 |
+
+### [TeX Live](Technical-Writing/TexLive/README.md)
+
+| 文档 | 内容 |
+|------|------|
+| [TeX Live in WSL](<Technical-Writing/TexLive/texLive in WSL.md>) | WSL 中安装和配置 TeX Live |
 
 ## [Network](Network/README.md)
 
@@ -179,12 +193,6 @@
 |------|------|
 | [IPv6-only VPS](Network/VPS/IPv6-vps.md) | IPv6-only VPS 网络配置 |
 
-## [Node.js](Node.js/README.md)
-
-| 文档 | 内容 |
-|------|------|
-| [Node.js 开发环境](Node.js/nodejs-environment-guide.md) | 版本管理、包管理器与项目环境 |
-
 ## [GPU](GPU/README.md)
 
 ### [CUDA](GPU/CUDA/README.md)
@@ -193,12 +201,6 @@
 |------|------|
 | [GPU 驱动与 DKMS](GPU/CUDA/gpu-driver-dkms.md) | Linux GPU 驱动、兼容性、安全启动、容器与排障 |
 | [CUDA Toolkit 安装](GPU/CUDA/cuda-install.md) | 无 sudo 权限安装 CUDA Toolkit |
-
-## [TexLive](TexLive/README.md)
-
-| 文档 | 内容 |
-|------|------|
-| [TeX Live in WSL](<TexLive/texLive in WSL.md>) | WSL 中安装和配置 TeX Live |
 
 ## [Virtualization](Virtualization/README.md)
 
