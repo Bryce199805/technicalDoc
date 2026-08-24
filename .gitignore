@@ -1,0 +1,6 @@
+# Local assistant preferences and machine-specific settings
+CODEBUDDY.md
+.claude/settings.local.json
+
+# Local drafts and personal templates
+.local/

@@ -58,3 +58,12 @@
 - **LaTeX 数学**: 基于 KaTeX/MathJax 渲染
 
 _最后更新: 2025年3月_
+
+## 未来扩展
+
+- CommonMark、GFM 与不同渲染器的兼容边界。
+- Mermaid、PlantUML、数学公式和可访问性写作。
+- Markdown lint、链接检查、拼写检查和格式化。
+- MkDocs、Docusaurus、VuePress 等 Docs as Code 发布流程。
+- 大型知识库的链接设计、术语统一和内容复用。
+- 将重复的扩展语法收敛到一个权威章节。

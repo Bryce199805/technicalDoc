@@ -77,3 +77,12 @@ systemctl edit nginx.service
 - `MemoryMax=` 是硬上限，超出后可能触发 OOM；`MemoryHigh=` 更适合作为优雅限流阈值。
 - systemd 配置项会被翻译为 cgroup 文件，不建议同时手工改 `/sys/fs/cgroup` 和 systemd unit。
 - 资源限制要先在测试环境压测，避免把数据库、日志、监控组件限制得过紧。
+
+## 未来扩展
+
+- PSI、pressure stall、OOM 事件和资源压力告警。
+- cgroup delegation、Rootless 容器与用户命名空间。
+- systemd-oomd、内存回收和服务保护策略。
+- Docker、containerd、Kubernetes QoS 与 cgroup 的映射。
+- CPU/内存/IO 基准测试和容量规划方法。
+- eBPF 辅助的资源观测与故障定位。
